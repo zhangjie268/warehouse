@@ -2,7 +2,7 @@
 <html class="loginHtml">
 <head>
 	<meta charset="utf-8">
-	<title>仓库管理系统</title>
+	<title>ログイン - 倉庫管理システム</title>
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -14,42 +14,34 @@
 	<link rel="stylesheet" href="/resources/css/public.css" media="all" />
 </head>
 <body class="loginBody">
-	<form class="layui-form">
-		<div class="login_face"><img src="/resources/images/head.jpg" class="userAvatar"></div>
-		<div class="layui-form-item input-item">
-			<label for="userName">用户名</label>
-			<input type="text" placeholder="请输入用户名" autocomplete="off" name="loginname" class="layui-input" lay-verify="required">
-		</div>
-		<div class="layui-form-item input-item">
-			<label for="password">密码</label>
-			<input type="password" placeholder="请输入密码" autocomplete="off" name="pwd" class="layui-input" lay-verify="required">
-		</div>
-<!--		<div class="code">
-			<input type="text" value="" placeholder="请输入验证码（不区分大小写）" class="input-val">
-			<canvas id="canvas" width="100" height="30"></canvas>
-		</div>-->
-		<div class="layui-form-item input-item" id="imgCode">
-			<label for="imgCode">验证码</label>
-			<input type="text" placeholder="请输入验证码" autocomplete="off" id="code" name="code" class="layui-input">
-			<a href="javascript:getVerifiCode()">
-				<img id="yzm_img" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;" title="点击刷新验证码" src="/login/getVerifiCode"/>
-			</a>
+<form class="layui-form">
+	<div class="login_face"><img src="/resources/images/head.jpg" class="userAvatar"></div>
+	<div class="layui-form-item input-item">
+		<label for="userName">ユーザー名</label>
+		<input type="text" placeholder="ユーザー名を入力してください" autocomplete="off" name="loginname" class="layui-input" lay-verify="required">
+	</div>
+	<div class="layui-form-item input-item">
+		<label for="password">パスワード</label>
+		<input type="password" placeholder="パスワードを入力してください" autocomplete="off" name="pwd" class="layui-input" lay-verify="required">
+	</div>
+	<div class="layui-form-item input-item" id="imgCode">
+		<label for="imgCode">認証コード</label>
+		<input type="text" placeholder="認証コードを入力してください" autocomplete="off" id="code" name="code" class="layui-input">
+		<a href="javascript:getVerifiCode()">
+			<img id="yzm_img" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;" title="認証コードを再読み込み" src="/login/getVerifiCode"/>
+		</a>
+	</div>
 
-		</div>
+	<div class="layui-form-item">
+		<button class="layui-btn layui-block" lay-filter="login" lay-submit>ログイン</button>
+	</div>
+	<div class="layui-form-item layui-row">
+	</div>
+</form>
+<script type="text/javascript" src="/resources/layui/layui.js"></script>
+<script type="text/javascript" src="/resources/js/cache.js"></script>
 
-		<div class="layui-form-item">
-			<button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>
-		</div>
-		<div class="layui-form-item layui-row">
-			<!-- <a href="javascript:;" class="seraph icon-qq layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
-			<a href="javascript:;" class="seraph icon-wechat layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
-			<a href="javascript:;" class="seraph icon-sina layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a> -->
-		</div>
-	</form>
-	<script type="text/javascript" src="/resources/layui/layui.js"></script>
-	<script type="text/javascript" src="/resources/js/cache.js"></script>
-	
-	<script type="text/javascript">
+<script type="text/javascript">
 		function getVerifiCode() {
 			$("#yzm_img").prop('src','/login/getVerifiCode?a='+new Date().getTime());
 		}
@@ -58,19 +50,18 @@
 	        layer = parent.layer === undefined ? layui.layer : top.layer
 	        $ = layui.jquery;
 
-
 	    form.on("submit(login)",function(data){
 	    	var btn =  $(this);
-	    	//设置登录按钮  为不可点击
-	    	btn.text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+	    	//設定されたログインボタン（クリック不可）
+	    	btn.text("ログイン中...").attr("disabled","disabled").addClass("layui-disabled");
 	       	$.post("/login/login",data.field,function(rs){
-	       		//设置登录按钮 恢复可点击   在前端防止 重复点击
-	       		btn.text("登录").attr("disabled",false).removeClass("layui-disabled");
+	       		//ボタンをリセットして再度クリック可能にする
+	       		btn.text("ログイン").attr("disabled",false).removeClass("layui-disabled");
 	       		layer.msg(rs.msg);
 	       		if(rs.code != 200){
 	       			layer.msg(rs.msg);
 	       		}else{
-	       			//跳转到templates/system/index/index.html页面
+	       			//templates/system/index/index.htmlページに移動
 	       			layer.msg(rs.msg);
 	       			location.href="/sys/index";
 	       		}
@@ -78,7 +69,7 @@
 	        return false;
 	    })
 
-	    //表单输入效果
+	    //フォーム入力のフォーカス
 	    $(".loginBody .input-item").click(function(e){
 	        e.stopPropagation();
 	        $(this).addClass("layui-input-focus").find(".layui-input").focus();
