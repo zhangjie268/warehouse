@@ -141,7 +141,6 @@ function addTab(_this){
 	tab.tabAdd(_this);
 }
 
-//捐赠弹窗
 
 
 //图片管理弹窗

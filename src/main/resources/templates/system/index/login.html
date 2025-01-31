@@ -24,13 +24,7 @@
 		<label for="password">パスワード</label>
 		<input type="password" placeholder="パスワードを入力してください" autocomplete="off" name="pwd" class="layui-input" lay-verify="required">
 	</div>
-	<div class="layui-form-item input-item" id="imgCode">
-		<label for="imgCode">認証コード</label>
-		<input type="text" placeholder="認証コードを入力してください" autocomplete="off" id="code" name="code" class="layui-input">
-		<a href="javascript:getVerifiCode()">
-			<img id="yzm_img" style="cursor:pointer;width: 100px;height: 36px;margin: 5px 0 0 5px;border-radius: 3px;" title="認証コードを再読み込み" src="/login/getVerifiCode"/>
-		</a>
-	</div>
+
 
 	<div class="layui-form-item">
 		<button class="layui-btn layui-block" lay-filter="login" lay-submit>ログイン</button>
@@ -42,9 +36,9 @@
 <script type="text/javascript" src="/resources/js/cache.js"></script>
 
 <script type="text/javascript">
-		function getVerifiCode() {
-			$("#yzm_img").prop('src','/login/getVerifiCode?a='+new Date().getTime());
-		}
+<!--		function getVerifiCode() {-->
+<!--			$("#yzm_img").prop('src','/login/getVerifiCode?a='+new Date().getTime());-->
+<!--		}-->
 	layui.use(['form','layer','jquery'],function(){
 	    var form = layui.form,
 	        layer = parent.layer === undefined ? layui.layer : top.layer
