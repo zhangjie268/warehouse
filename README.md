@@ -1,38 +1,40 @@
-# 基于spring boot的中小型仓库物流管理系统(springboot+mybatis-plus+shiro+mysql+layui前端框架)
-## 技术栈使用
-后端：springboot、mybatis-plus、shiro
+# Spring Bootをベースとした中小規模倉庫物流管理システム (Spring Boot + MyBatis-Plus + Shiro + MySQL + LayUIフロントエンドフレームワーク)
 
-前端：layUI
+## 使用技術スタック
+バックエンド：Spring Boot、MyBatis-Plus、Shiro  
+フロントエンド：LayUI  
+ストレージ：MySQL
 
-存储：mysql
+## 主な機能実現：
 
-## 主要功能实现：
+1. 基礎管理：商品管理、顧客管理、サプライヤー管理
 
-1.基础管理：商品管理、客户管理、供应商管理；
+2. 物流管理：入荷管理、出荷管理、配送管理
 
-2.物流管理：进货管理、发货管理、交付管理；
+3. システム管理：メニュー管理、部門管理
 
-3.系统管理：菜单管理、部门管理；
+4. 人事管理：権限管理、役割管理、ユーザー管理
 
-4.人事管理：权限管理、角色管理、用户管理；
+5. その他：
 
-5.其他：
+## インストール手順：
 
+1. Gitでクローンするか、直接ダウンロードしてください。
 
-## 安装步骤：
+2. `sql`ディレクトリ内の`warehouse.sql`ファイルを実行します。
 
-1.git克隆或者直接下载
+3. プロジェクトを起動後、`localhost:8080`にアクセスしてログイン画面に移動します。
 
-2.运行sql目录下的warehouse.sql文件
+ポートの変更やデータベース、Shiroの設定を変更する場合は、`application.yml`ファイルを編集してください。
 
-3.启动项目后运行locahost:8080跳转到登录界面即可
+## 管理者アカウント情報：
+アカウント：system  
+パスワード：123456  
+認証コード入力：認証コードのアルファベットは大文字で入力してください。
 
-切换端口或者修改数据库、shiro配置信息进入application.yml文件修改
-
-管理员账号：system  密码：123456 验证码输入：注意验证码字母要大写
 
 ## 功能展示：
 
-登录界面：![登录界面.png](/Users/macbook/Downloads/warehouse/docx/image/登录界面.png)
+登录界面：![登录界面.png](https://.png)
 
-功能界面：![功能界面.png](https://s2.loli.net/2022/08/03/gKi8TM52HoaR4lu.png)
+功能界面：![功能界面.png](https://.png)
