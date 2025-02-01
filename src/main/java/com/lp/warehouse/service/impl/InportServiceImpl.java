@@ -1,5 +1,6 @@
 package com.lp.warehouse.service.impl;
 
+import com.lp.sys.common.ResultObj;
 import com.lp.warehouse.domain.Goods;
 import com.lp.warehouse.domain.Inport;
 import com.lp.warehouse.mapper.GoodsMapper;
@@ -35,11 +36,11 @@ public class InportServiceImpl extends ServiceImpl<InportMapper, Inport> impleme
 
     @Override
     public boolean save(Inport entity) {
-        //根据商品编号查询商品
+        //商品番号で商品を検索する
         Goods goods = goodsMapper.selectById(entity.getGoodsid());
         goods.setNumber(goods.getNumber() + entity.getNumber());
         goodsMapper.updateById(goods);
-        //保存进货信息
+        //仕入れ情報を保存する
         return super.save(entity);
     }
 
