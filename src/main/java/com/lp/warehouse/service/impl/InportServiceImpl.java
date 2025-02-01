@@ -46,14 +46,14 @@ public class InportServiceImpl extends ServiceImpl<InportMapper, Inport> impleme
 
     @Override
     public boolean updateById(Inport entity) {
-        //根据进货ID查询进货
+        //仕入れIDで仕入れを検索する
         Inport inport = this.baseMapper.selectById(entity.getId());
-        //根据商品ID查询商品信息
+        //商品IDで商品情報を検索する
         Goods goods = this.goodsMapper.selectById(entity.getGoodsid());
-        //库存的算法  当前库存-进货单修改之前的数量+修改之后的数量
+        //新しい在庫 = 現在の在庫 - 修正前の数量 + 修正後の数量
         goods.setNumber(goods.getNumber() - inport.getNumber() + entity.getNumber());
         this.goodsMapper.updateById(goods);
-        //更新进货单
+        //仕入れ注文の更新
         return super.updateById(entity);
     }
 
